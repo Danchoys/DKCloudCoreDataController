@@ -1,0 +1,270 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC3206E418E00DD6002DA211 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3206E318E00DD6002DA211 /* Foundation.framework */; };
+		CC3206E918E00DD6002DA211 /* DKCloudCoreDataController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC3206E818E00DD6002DA211 /* DKCloudCoreDataController.h */; };
+		CC3206EB18E00DD6002DA211 /* DKCloudCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3206EA18E00DD6002DA211 /* DKCloudCoreDataController.m */; };
+		CC32070A18E00E39002DA211 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32070918E00E39002DA211 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CC3206DE18E00DD6002DA211 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				CC3206E918E00DD6002DA211 /* DKCloudCoreDataController.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CC3206E018E00DD6002DA211 /* libDKCloudCoreDataController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDKCloudCoreDataController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3206E318E00DD6002DA211 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CC3206E718E00DD6002DA211 /* DKCloudCoreDataController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DKCloudCoreDataController-Prefix.pch"; sourceTree = "<group>"; };
+		CC3206E818E00DD6002DA211 /* DKCloudCoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DKCloudCoreDataController.h; sourceTree = "<group>"; };
+		CC3206EA18E00DD6002DA211 /* DKCloudCoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DKCloudCoreDataController.m; sourceTree = "<group>"; };
+		CC3206F118E00DD6002DA211 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CC32070918E00E39002DA211 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC3206DD18E00DD6002DA211 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC32070A18E00E39002DA211 /* UIKit.framework in Frameworks */,
+				CC3206E418E00DD6002DA211 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC3206D718E00DD6002DA211 = {
+			isa = PBXGroup;
+			children = (
+				CC3206E518E00DD6002DA211 /* DKCloudCoreDataController */,
+				CC3206E218E00DD6002DA211 /* Frameworks */,
+				CC3206E118E00DD6002DA211 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC3206E118E00DD6002DA211 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC3206E018E00DD6002DA211 /* libDKCloudCoreDataController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC3206E218E00DD6002DA211 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC32070918E00E39002DA211 /* UIKit.framework */,
+				CC3206E318E00DD6002DA211 /* Foundation.framework */,
+				CC3206F118E00DD6002DA211 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC3206E518E00DD6002DA211 /* DKCloudCoreDataController */ = {
+			isa = PBXGroup;
+			children = (
+				CC3206E818E00DD6002DA211 /* DKCloudCoreDataController.h */,
+				CC3206EA18E00DD6002DA211 /* DKCloudCoreDataController.m */,
+				CC3206E618E00DD6002DA211 /* Supporting Files */,
+			);
+			path = DKCloudCoreDataController;
+			sourceTree = "<group>";
+		};
+		CC3206E618E00DD6002DA211 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC3206E718E00DD6002DA211 /* DKCloudCoreDataController-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC3206DF18E00DD6002DA211 /* DKCloudCoreDataController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC32070318E00DD6002DA211 /* Build configuration list for PBXNativeTarget "DKCloudCoreDataController" */;
+			buildPhases = (
+				CC3206DC18E00DD6002DA211 /* Sources */,
+				CC3206DD18E00DD6002DA211 /* Frameworks */,
+				CC3206DE18E00DD6002DA211 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DKCloudCoreDataController;
+			productName = DKCloudCoreDataController;
+			productReference = CC3206E018E00DD6002DA211 /* libDKCloudCoreDataController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC3206D818E00DD6002DA211 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = AREALIDEA;
+			};
+			buildConfigurationList = CC3206DB18E00DD6002DA211 /* Build configuration list for PBXProject "DKCloudCoreDataController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CC3206D718E00DD6002DA211;
+			productRefGroup = CC3206E118E00DD6002DA211 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC3206DF18E00DD6002DA211 /* DKCloudCoreDataController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC3206DC18E00DD6002DA211 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC3206EB18E00DD6002DA211 /* DKCloudCoreDataController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CC32070118E00DD6002DA211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CC32070218E00DD6002DA211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC32070418E00DD6002DA211 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DKCloudCoreDataController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DKCloudCoreDataController/DKCloudCoreDataController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CC32070518E00DD6002DA211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/DKCloudCoreDataController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DKCloudCoreDataController/DKCloudCoreDataController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC3206DB18E00DD6002DA211 /* Build configuration list for PBXProject "DKCloudCoreDataController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC32070118E00DD6002DA211 /* Debug */,
+				CC32070218E00DD6002DA211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC32070318E00DD6002DA211 /* Build configuration list for PBXNativeTarget "DKCloudCoreDataController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC32070418E00DD6002DA211 /* Debug */,
+				CC32070518E00DD6002DA211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC3206D818E00DD6002DA211 /* Project object */;
+}
