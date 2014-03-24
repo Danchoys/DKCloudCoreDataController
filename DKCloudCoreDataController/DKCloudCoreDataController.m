@@ -12,6 +12,14 @@
 #define NEEDS_ASYNCHRONOUS_SETUP !IS_iOS_7_AND_LATER
 #define NEW_API_AVAILABLE IS_iOS_7_AND_LATER
 
+static void DKLog(NSString *format, ...)
+{
+    va_list argp;
+	va_start(argp, format);
+    NSLogv([NSString stringWithFormat:@"DKCloudCoreDataController: %@", format], argp);
+	va_end(argp);
+}
+
 // Option keys
 NSString *const DKCloudCoreDataControllerUbiquitousStoreConfigurationKey = @"_DKCloudCoreDataControllerUbiquitousStoreConfigurationKey";
 NSString *const DKCloudCoreDataControllerUbiquityContainerIdentifierKey = @"_DKCloudCoreDataControllerUbiquityContainerIdentifierKey";
@@ -192,7 +200,7 @@ typedef enum : NSUInteger {
         [self loadLocalStore];
         [self loadUbiquitousStore];
     } else
-        NSLog(@"Warning: you need to set delegate prior to loading persistent stores");
+        DKLog(@"Warning: you need to set delegate prior to loading persistent stores");
 }
 
 #pragma mark -
@@ -208,15 +216,15 @@ typedef enum : NSUInteger {
                                                             options:nil
                                                               error:&error];
         if (error)
-            NSLog(@"Error: Could not add local store: %@", error);
+            DKLog(@"Error: Could not add local store: %@", error);
         else
-            NSLog(@"Loaded local store");
+            DKLog(@"Loaded local store");
     }
 }
 
 - (void)loadUbiquitousStore
 {
-    NSLog(@"Will load ubiquitous store");
+    DKLog(@"Will load ubiquitous store");
     BOOL finished = YES;
     if (!self.iCloudAvailable) {
         // If iCloud is unavailable, lets load the noAccountStore;
@@ -225,7 +233,7 @@ typedef enum : NSUInteger {
         if (NEEDS_ASYNCHRONOUS_SETUP) {
             // We need to perform asynchronous setup,
             // which starts with loading the fallback store.
-            NSLog(@"Asynchronous setup started");
+            DKLog(@"Asynchronous setup started");
             finished = NO;
             [self loadFallbackStore];
         } else {
@@ -264,7 +272,7 @@ typedef enum : NSUInteger {
                     [self unloadUbiquitousStore];
                     [self loadCloudStore];
                     
-                    NSLog(@"Asynchronous setup finished");
+                    DKLog(@"Asynchronous setup finished");
                     [self ubiquitousStoreDidLoad];
                 });
             });
@@ -288,9 +296,9 @@ typedef enum : NSUInteger {
                                                         options:nil
                                                           error:&error];
     if (error)
-        NSLog(@"Error: Could not load fallback store: %@", error);
+        DKLog(@"Error: Could not load fallback store: %@", error);
     else
-        NSLog(@"Loaded fallback store");
+        DKLog(@"Loaded fallback store");
     [self setCurrentUbiquitousStoreType:DKCloudCoreDataControllerUbiquitousStoreTypeFallback postNotification:YES];
 }
 
@@ -309,9 +317,9 @@ typedef enum : NSUInteger {
                                     options:nil
                                       error:&error];
     if (error)
-        NSLog(@"Error: Could not load no account store: %@", error);
+        DKLog(@"Error: Could not load no account store: %@", error);
     else
-        NSLog(@"Loaded no account store");
+        DKLog(@"Loaded no account store");
 }
 
 - (void)loadCloudStoreIntoPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)coordinator
@@ -325,7 +333,7 @@ typedef enum : NSUInteger {
     
     // If the new API is available, we need to pass the ubiquity container identifier among the options
     // to addPersistentStoreWithType:configuration:URL:options:error:.
-    if (NEW_API_AVAILABLE)
+    if (NEW_API_AVAILABLE && self.ubiquityContainerIdentifier)
         options[NSPersistentStoreUbiquitousContainerIdentifierKey] = self.ubiquityContainerIdentifier;
     
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
@@ -334,9 +342,9 @@ typedef enum : NSUInteger {
                                     options:options
                                       error:&error];
     if (error)
-        NSLog(@"Error: Could not load cloud store: %@", error);
+        DKLog(@"Error: Could not load cloud store: %@", error);
     else
-        NSLog(@"Loaded cloud store");
+        DKLog(@"Loaded cloud store");
 }
 
 #pragma mark -
@@ -345,7 +353,7 @@ typedef enum : NSUInteger {
 - (void)ubiquitousStoreDidLoad
 {
     self.ubiquityToken = _currentUbiquityToken;
-    NSLog(@"Did load ubiquitous store");
+    DKLog(@"Did load ubiquitous store");
 }
 
 #pragma mark -
@@ -353,7 +361,7 @@ typedef enum : NSUInteger {
 
 - (void)unloadUbiquitousStore
 {
-    NSLog(@"Will unload ubiquitous store");
+    DKLog(@"Will unload ubiquitous store");
     NSURL *storeURL = nil;
     switch (self.currentUbiquitousStoreType) {
         case DKCloudCoreDataControllerUbiquitousStoreTypeCloud:
@@ -373,11 +381,11 @@ typedef enum : NSUInteger {
         NSError *error = nil;
         NSPersistentStore *store = [_mainPersistentStoreCoordinator persistentStoreForURL:storeURL];
         if (!store || ![_mainPersistentStoreCoordinator removePersistentStore:store error:&error]) {
-            NSLog(@"Error: could not remove persistent store with url: %@\n\tError:%@", storeURL, error);
+            DKLog(@"Error: could not remove persistent store with url: %@\n\tError:%@", storeURL, error);
         }
         self.currentUbiquitousStoreType = DKCloudCoreDataControllerUbiquitousStoreTypeNone;
     }
-    NSLog(@"Did unload ubiquitous store");
+    DKLog(@"Did unload ubiquitous store");
 }
 
 #pragma mark -
@@ -484,7 +492,7 @@ typedef enum : NSUInteger {
         NSMutableArray *uniqueAttributeValuesWithDups = [NSMutableArray array];
         NSArray *countDictionaries = [context executeFetchRequest:fr error:&error];
         if (!countDictionaries && error)
-            NSLog(@"Error: could not execute fetch request: %@", error);
+            DKLog(@"Error: could not execute fetch request: %@", error);
         for (NSDictionary *countDictionary in countDictionaries)
             if ([countDictionary[@"count"] integerValue] > 1)
                 [uniqueAttributeValuesWithDups addObject:countDictionary[uniqueAttributeName]];
@@ -501,7 +509,7 @@ typedef enum : NSUInteger {
         // Resolve duplicates
         NSArray *duplicates = [context executeFetchRequest:fr error:&error];
         if (!duplicates && error)
-            NSLog(@"Error: could not execute fetch request: %@", error);
+            DKLog(@"Error: could not execute fetch request: %@", error);
         NSString *comparisonAttributeName = [self.delegate cloudCoreDataController:self comparisonAttributeNameForEntityWithName:entity.name];
         NSAssert(entity.attributesByName[comparisonAttributeName], @"Assertion failed: attribute %@ not found for the entity %@", comparisonAttributeName, entity.name);
         NSAssert([NSClassFromString([entity.attributesByName[comparisonAttributeName] attributeValueClassName]) instancesRespondToSelector:@selector(compare:)],
@@ -527,9 +535,9 @@ typedef enum : NSUInteger {
             if (0 == (i % self.batchSize)) {
                 //save the changes after each batch, this helps control memory pressure by turning previously examined objects back in to faults
                 if ([context save:&error]) {
-                    NSLog(@"Saved successfully after uniquing");
+                    DKLog(@"Saved successfully after uniquing");
                 } else {
-                    NSLog(@"Error saving unique results: %@", error);
+                    DKLog(@"Error saving unique results: %@", error);
                 }
             }
             i++;
@@ -537,9 +545,9 @@ typedef enum : NSUInteger {
         
         // Save changes
         if ([context save:&error]) {
-            NSLog(@"Saved successfully after uniquing");
+            DKLog(@"Saved successfully after uniquing");
         } else {
-            NSLog(@"Error saving unique results: %@", error);
+            DKLog(@"Error saving unique results: %@", error);
         }
     }
 }
@@ -550,7 +558,7 @@ typedef enum : NSUInteger {
 - (void)mergeNoAccountStoreIntoCurrentStore
 {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[[self noAccountStoreURL] path]]) {
-        NSLog(@"Will merge no account store into current store");
+        DKLog(@"Will merge no account store into current store");
         
         NSManagedObjectContext *cloudContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [cloudContext setPersistentStoreCoordinator:_mainPersistentStoreCoordinator];
@@ -571,7 +579,7 @@ typedef enum : NSUInteger {
         noAccountContext = nil;
         noAccountCoordinator = nil;
         [self removeNoAccountStore];
-        NSLog(@"Did merge no account store into current store");
+        DKLog(@"Did merge no account store into current store");
         
         // Tell the delegate that the NoAccount store's data was merged into the Cloud store
         if ([self.delegate respondsToSelector:@selector(cloudCoreDataControllerDidMergeNoAccountStoreIntoCloudStore:)])
@@ -601,7 +609,7 @@ typedef enum : NSUInteger {
     [context performBlockAndWait:^{
         NSError *error;
         if (![context save:&error]) {
-            NSLog(@"Error: Could not save context: %@", error);
+            DKLog(@"Error: Could not save context: %@", error);
         }
     }];
 }
@@ -641,7 +649,7 @@ typedef enum : NSUInteger {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         NSError *error = nil;
         if (![[NSFileManager defaultManager] removeItemAtURL:url error:&error]) {
-            NSLog(@"Could not remove the store at path: %@\n\tError: %@", url.path, error);
+            DKLog(@"Could not remove the store at path: %@\n\tError: %@", url.path, error);
         }
     }
 }
@@ -652,7 +660,7 @@ typedef enum : NSUInteger {
     if (![fileManager fileExistsAtPath:[url path]]) {
         NSError *error;
         if (![fileManager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:&error])
-            NSLog(@"Error: Could not create path: %@\n\tError: %@,", [url path], error);
+            DKLog(@"Error: Could not create path: %@\n\tError: %@,", [url path], error);
     }
 }
 
@@ -723,7 +731,7 @@ typedef enum : NSUInteger {
         NSURL *fallbackStoreURL = [self fallbackStoreURL];
         [self removeFallbackStore];
         if (![[NSFileManager defaultManager] copyItemAtURL:cloudStoreURL toURL:fallbackStoreURL error:&error]) {
-            NSLog(@"Error: could not copy cloud store to the fallback store: %@", error);
+            DKLog(@"Error: could not copy cloud store to the fallback store: %@", error);
         }
     }
 }
