@@ -42,7 +42,7 @@
  Use this method to notify the user that his data from the NoAccount store has been merged into the Cloud store and that
  it is no longer available when he logs off from his current iCloud account.
  */
-- (NSString *)cloudCoreDataControllerDidMergeNoAccountStoreIntoCloudStore:(DKCloudCoreDataController *)controller;
+- (void)cloudCoreDataControllerDidMergeNoAccountStoreIntoCloudStore:(DKCloudCoreDataController *)controller;
 
 @end
 

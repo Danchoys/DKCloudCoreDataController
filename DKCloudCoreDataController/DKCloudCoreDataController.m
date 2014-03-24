@@ -60,6 +60,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, readonly) NSString *ubiquitousStoreConfiguration;
 
+@property (nonatomic, readonly) NSString *ubiquityContainerIdentifier;
+
 @property (nonatomic) DKCloudCoreDataControllerUbiquitousStoreType currentUbiquitousStoreType;
 
 @end
@@ -173,13 +175,24 @@ typedef enum : NSUInteger {
     return configuration;
 }
 
+- (NSString *)ubiquityContainerIdentifier
+{
+    NSString *ubiquityContainerIdentifier = nil;
+    if ([_options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey] length] > 0)
+        ubiquityContainerIdentifier = _options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey];
+    return ubiquityContainerIdentifier;
+}
+
 #pragma mark -
 #pragma mark - Public API
 
 - (void)loadPersistentStores
 {
-    [self loadLocalStore];
-    [self loadUbiquitousStore];
+    if (self.delegate) {
+        [self loadLocalStore];
+        [self loadUbiquitousStore];
+    } else
+        NSLog(@"Warning: you need to set delegate prior to loading persistent stores");
 }
 
 #pragma mark -
@@ -307,8 +320,14 @@ typedef enum : NSUInteger {
     NSURL *cloudStoreURL = [self cloudStoreURL];
     id ubiquitousContentURL = [self ubiquitousContentURL];
     
-    NSDictionary *options = @{ NSPersistentStoreUbiquitousContentNameKey : _ubiquitousContentName,
-                               NSPersistentStoreUbiquitousContentURLKey : ubiquitousContentURL};
+    NSMutableDictionary *options = [@{ NSPersistentStoreUbiquitousContentNameKey : _ubiquitousContentName,
+                                      NSPersistentStoreUbiquitousContentURLKey : ubiquitousContentURL} mutableCopy];
+    
+    // If the new API is available, we need to pass the ubiquity container identifier among the options
+    // to addPersistentStoreWithType:configuration:URL:options:error:.
+    if (NEW_API_AVAILABLE)
+        options[NSPersistentStoreUbiquitousContainerIdentifierKey] = self.ubiquityContainerIdentifier;
+    
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
                               configuration:self.ubiquitousStoreConfiguration
                                         URL:cloudStoreURL
@@ -810,10 +829,7 @@ typedef enum : NSUInteger {
 {
     if (!_ubiquityContainerURL) {
         NSFileManager *fileManager = [[NSFileManager alloc] init];
-        NSString *ubiquityContainerIdentifier = nil;
-        if ([_options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey] length] > 0)
-            ubiquityContainerIdentifier = _options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey];
-        _ubiquityContainerURL = [fileManager URLForUbiquityContainerIdentifier:ubiquityContainerIdentifier];
+        _ubiquityContainerURL = [fileManager URLForUbiquityContainerIdentifier:self.ubiquityContainerIdentifier];
     }
     return _ubiquityContainerURL;
 }
