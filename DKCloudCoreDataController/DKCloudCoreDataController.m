@@ -29,6 +29,7 @@ NSString *const DKCloudCoreDataControllerLocalStoreNameKey = @"_DKCloudCoreDataC
 NSString *const DKCloudCoreDataControllerLibrarySubdirectoryKey = @"_DKCloudCoreDataControllerLibrarySubdirectoryKey";
 NSString *const DKCloudCoreDataControllerStoreWillChangeNotification = @"_DKCloudCoreDataControllerStoreWillChangeNotification";
 NSString *const DKCloudCoreDataControllerStoreDidChangeNotification = @"_DKCloudCoreDataControllerStoreDidChangeNotification";
+NSString *const DKCloudCoreDataControllerDidImportChangesNotification = @"_DKCloudCoreDataControllerDidImportChangesNotification";
 
 // User defaults keys
 static NSString *const kUbiquityTokenKey = @"DKCloudCoreDataController_ubiquityTokenKey";
@@ -518,7 +519,7 @@ typedef enum : NSUInteger {
         NSUInteger i = 1;
         for (NSManagedObject *object in duplicates) {
             if (prevObject) {
-                if ([[object valueForKey:uniqueAttributeName] isEqualToString:[prevObject valueForKey:uniqueAttributeName]]) {
+                if ([[object valueForKey:uniqueAttributeName] isEqual:[prevObject valueForKey:uniqueAttributeName]]) {
                     if ([[object valueForKey:comparisonAttributeName] compare:[prevObject valueForKey:comparisonAttributeName]] == NSOrderedAscending) {
                         [context deleteObject:object];
                     } else {
@@ -702,6 +703,8 @@ typedef enum : NSUInteger {
     [interestingObjectIDs unionSet:notification.userInfo[NSInsertedObjectsKey]];
     [interestingObjectIDs unionSet:notification.userInfo[NSUpdatedObjectsKey]];
     [self resolveDuplicatesOfObjectsWithIDs:interestingObjectIDs inContext:self.mainThreadContext];
+    // Send notification that we have imported new content
+    [[NSNotificationCenter defaultCenter] postNotificationName:DKCloudCoreDataControllerDidImportChangesNotification object:self];
 }
 
 - (void)storesWillChange:(NSNotification *)notification

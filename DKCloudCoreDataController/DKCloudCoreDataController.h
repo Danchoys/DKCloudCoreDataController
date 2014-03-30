@@ -28,13 +28,13 @@
  From this method you need to return the attribute name which uniquely identifies an object of the given entity. If
  this entity does not have unique attributes, you need to return nil.
  */
-- (NSString *)cloudCoreDataController:(DKCloudCoreDataController *)controller uniqueAttributeNameForEntityWithName:(NSString *)enityName;
+- (NSString *)cloudCoreDataController:(DKCloudCoreDataController *)controller uniqueAttributeNameForEntityWithName:(NSString *)entityName;
 
 /**
  From this method you need to return the attribute name which allows for comparing objects of the given entity. The type
  of the attribute has to be one of this: NSString, NSNumber, NSDate.
  */
-- (NSString *)cloudCoreDataController:(DKCloudCoreDataController *)controller comparisonAttributeNameForEntityWithName:(NSString *)enityName;
+- (NSString *)cloudCoreDataController:(DKCloudCoreDataController *)controller comparisonAttributeNameForEntityWithName:(NSString *)entityName;
 
 @optional
 
@@ -64,12 +64,12 @@
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquitousStoreConfigurationKey;
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerIdentifierKey;
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey;
-
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreConfigurationKey;
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreNameKey;
-
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLibrarySubdirectoryKey;
 
+// Notification names
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerStoreWillChangeNotification;
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerStoreDidChangeNotification;
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerDidImportChangesNotification;
 
