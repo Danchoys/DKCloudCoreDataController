@@ -32,15 +32,22 @@
 
 /**
  From this method you need to return the attribute name which allows for comparing objects of the given entity. The type
- of the attribute has to be one of this: NSString, NSNumber, NSDate.
+ of the attribute has to be one of these: NSString, NSNumber, NSDate.
  */
 - (NSString *)cloudCoreDataController:(DKCloudCoreDataController *)controller comparisonAttributeNameForEntityWithName:(NSString *)entityName;
 
 @optional
 
 /**
- Use this method to notify the user that his data from the NoAccount store has been merged into the Cloud store and that
- it is no longer available when he logs off from his current iCloud account.
+ This method is called when the iCloud store becomes available. Return YES if you want
+ to merge data from no-account store into the iCloud store. After the data is merged, no-account store
+ is removed. Return NO to leave the no-account store untouched. Default behaviour is YES.
+ */
+- (BOOL)cloudCoreDataControllerShouldMergeNoAccountStoreIntoCloudStore:(DKCloudCoreDataController *)controller;
+
+/**
+ Use this method to notify the user that his data from the no-account store has been merged into the Cloud store and that
+ it will not be available when he logs off from his current iCloud account.
  */
 - (void)cloudCoreDataControllerDidMergeNoAccountStoreIntoCloudStore:(DKCloudCoreDataController *)controller;
 
@@ -54,19 +61,24 @@
 
 @property (nonatomic) NSUInteger batchSize;
 
+// Designated initializer
 - (instancetype)initWithUbiquitousContentName:(NSString *)ubiquitousContentName
                                       options:(NSDictionary *)options;
+
+/**
+ Loads persistent store. Call this method once after you specify delegate.
+ */
 - (void)loadPersistentStores;
 
 @end
 
 // Possible keys for the options dictionary
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquitousStoreConfigurationKey;
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerIdentifierKey;
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey;
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreConfigurationKey;
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreNameKey;
-FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLibrarySubdirectoryKey;
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquitousStoreConfigurationKey;     // Name of the ubiquitous store Core Data configuration
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerIdentifierKey;      // Ubiquity container identifier
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey;    // Name of the subdirectory inside ubiquity container for log files
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreConfigurationKey;          // Name of the local store Core Data configuration
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLocalStoreNameKey;                   // Name of the local store file
+FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerLibrarySubdirectoryKey;              // Name of the subdirectory inside Library directory
 
 // Notification names
 FOUNDATION_EXTERN NSString *const DKCloudCoreDataControllerStoreWillChangeNotification;

@@ -263,6 +263,7 @@
 				CC32070518E00DD6002DA211 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

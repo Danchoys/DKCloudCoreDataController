@@ -27,6 +27,8 @@ NSString *const DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey = @"_D
 NSString *const DKCloudCoreDataControllerLocalStoreConfigurationKey = @"_DKCloudCoreDataControllerLocalStoreConfigurationKey";
 NSString *const DKCloudCoreDataControllerLocalStoreNameKey = @"_DKCloudCoreDataControllerLocalStoreNameKey";
 NSString *const DKCloudCoreDataControllerLibrarySubdirectoryKey = @"_DKCloudCoreDataControllerLibrarySubdirectoryKey";
+
+// Notification names
 NSString *const DKCloudCoreDataControllerStoreWillChangeNotification = @"_DKCloudCoreDataControllerStoreWillChangeNotification";
 NSString *const DKCloudCoreDataControllerStoreDidChangeNotification = @"_DKCloudCoreDataControllerStoreDidChangeNotification";
 NSString *const DKCloudCoreDataControllerDidImportChangesNotification = @"_DKCloudCoreDataControllerDidImportChangesNotification";
@@ -243,7 +245,9 @@ typedef enum : NSUInteger {
         
         // We may have a NoAccount store with some changes
         // waiting to be merged into the current store.
-        [self mergeNoAccountStoreIntoCurrentStore];
+        if (![self.delegate respondsToSelector:@selector(cloudCoreDataControllerShouldMergeNoAccountStoreIntoCloudStore:)] ||
+            [self.delegate cloudCoreDataControllerShouldMergeNoAccountStoreIntoCloudStore:self])
+            [self mergeNoAccountStoreIntoCurrentStore];
         
         // If we need the asynchronous setup,
         // lets start a queue and perform setup
@@ -258,7 +262,7 @@ typedef enum : NSUInteger {
                 [self loadCloudStoreIntoPersistentStoreCoordinator:cloudStoreCoordinator];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    // By this moment we can already have made changes to the fallback store.
+                    // By this moment we may already have made changes to the fallback store.
                     // Lets merge them into the cloud store on the main thread.
                     NSManagedObjectContext *cloudStoreContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
                     [cloudStoreContext setPersistentStoreCoordinator:cloudStoreCoordinator];
@@ -801,7 +805,7 @@ typedef enum : NSUInteger {
         retVal = containerSubdirectory;
     } else {
         NSURL *url = [self ubiquityContainerURL];
-        NSAssert(url, @"Assertion failed: Ubiquity container's url  is nil!");
+        NSAssert(url, @"Assertion failed: Ubiquity container's url is nil!");
         
         url = [url URLByAppendingPathComponent:containerSubdirectory isDirectory:YES];
         
@@ -810,6 +814,7 @@ typedef enum : NSUInteger {
         
         retVal = url;
     }
+    
     return retVal;
 }
 
