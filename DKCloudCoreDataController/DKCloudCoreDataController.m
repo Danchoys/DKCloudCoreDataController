@@ -1,6 +1,6 @@
 //
 //  DKCloudCoreDataController.m
-//  SharedCoreData_iOS
+//  DKCloudCoreDataController
 //
 //  Created by Daniil Konoplev on 19.03.14.
 //
@@ -69,10 +69,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, readonly, getter = isICloudAvailable) BOOL iCloudAvailable;
 
-@property (nonatomic, readonly) NSString *ubiquitousStoreConfiguration;
-
-@property (nonatomic, readonly) NSString *ubiquityContainerIdentifier;
-
 @property (nonatomic) DKCloudCoreDataControllerUbiquitousStoreType currentUbiquitousStoreType;
 
 @end
@@ -89,9 +85,18 @@ typedef enum : NSUInteger {
         // Check if both the unquitous content name is defined.
         // If not, we will return nil from the ctor.
         if (ubiquitousContentName && ubiquitousContentName.length > 0) {
+            NSMutableDictionary *defaultOptions = [@{DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey: kDefaultUbiquityContainerSubdirectoryName,
+                                                     DKCloudCoreDataControllerLocalStoreNameKey: kDefaultLocalStoreName,
+                                                     DKCloudCoreDataControllerLibrarySubdirectoryKey: kDefaultLibrarySubdirectoryName} mutableCopy];
+            
+            // Copy passed options into default options
+            for (NSString *key in options)
+                if ([options[key] length] > 0)
+                    defaultOptions[key] = options[key];
+            
             // Save the parameters passed
             _ubiquitousContentName = ubiquitousContentName;
-            _options = options;
+            _options = defaultOptions;
             
             // Set default batch size
             _batchSize = 100;
@@ -176,22 +181,6 @@ typedef enum : NSUInteger {
 - (BOOL)isICloudAvailable
 {
     return _currentUbiquityToken != nil;
-}
-
-- (NSString *)ubiquitousStoreConfiguration
-{
-    NSString *configuration = nil;
-    if ([_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey] length] > 0)
-        configuration = _options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey];
-    return configuration;
-}
-
-- (NSString *)ubiquityContainerIdentifier
-{
-    NSString *ubiquityContainerIdentifier = nil;
-    if ([_options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey] length] > 0)
-        ubiquityContainerIdentifier = _options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey];
-    return ubiquityContainerIdentifier;
 }
 
 #pragma mark -
@@ -296,7 +285,7 @@ typedef enum : NSUInteger {
 {
     NSError *error;
     [_mainPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                  configuration:self.ubiquitousStoreConfiguration
+                                                  configuration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]
                                                             URL:[self fallbackStoreURL]
                                                         options:nil
                                                           error:&error];
@@ -317,7 +306,7 @@ typedef enum : NSUInteger {
 {
     NSError *error;
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
-                              configuration:self.ubiquitousStoreConfiguration
+                              configuration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]
                                         URL:[self noAccountStoreURL]
                                     options:nil
                                       error:&error];
@@ -338,11 +327,11 @@ typedef enum : NSUInteger {
     
     // If the new API is available, we need to pass the ubiquity container identifier among the options
     // to addPersistentStoreWithType:configuration:URL:options:error:.
-    if (NEW_API_AVAILABLE && self.ubiquityContainerIdentifier)
-        options[NSPersistentStoreUbiquitousContainerIdentifierKey] = self.ubiquityContainerIdentifier;
+    if (NEW_API_AVAILABLE && _options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey])
+        options[NSPersistentStoreUbiquitousContainerIdentifierKey] = _options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey];
     
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
-                              configuration:self.ubiquitousStoreConfiguration
+                              configuration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]
                                         URL:cloudStoreURL
                                     options:options
                                       error:&error];
@@ -400,7 +389,7 @@ typedef enum : NSUInteger {
 {
     [context performBlockAndWait:^{
         // Grab all entities in the ubiquitous configuration
-        NSArray *ubiquitousEntities = [_mainPersistentStoreCoordinator.managedObjectModel entitiesForConfiguration:self.ubiquitousStoreConfiguration];
+        NSArray *ubiquitousEntities = [_mainPersistentStoreCoordinator.managedObjectModel entitiesForConfiguration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]];
         
         // For each entity we will be removing duplicates
         for (NSEntityDescription *entity in ubiquitousEntities) {
@@ -783,9 +772,7 @@ typedef enum : NSUInteger {
 {
     NSURL *url = [self sandboxPersistentStoresURL];
     
-    NSString *localStoreName = kDefaultLocalStoreName;
-    if ([_options[DKCloudCoreDataControllerLocalStoreNameKey] length] > 0)
-        localStoreName = _options[DKCloudCoreDataControllerLocalStoreNameKey];
+    NSString *localStoreName = _options[DKCloudCoreDataControllerLocalStoreNameKey];
     
     return [[url URLByAppendingPathComponent:localStoreName] URLByAppendingPathExtension:@"sqlite"];
 }
@@ -797,9 +784,7 @@ typedef enum : NSUInteger {
     id retVal = nil;
     
     // Get the ubiquity container's subdirectory name
-    NSString *containerSubdirectory = kDefaultUbiquityContainerSubdirectoryName;
-    if ([_options[DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey] length] > 0)
-        containerSubdirectory = _options[DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey];
+    NSString *containerSubdirectory = _options[DKCloudCoreDataControllerUbiquityContainerSubdirectoryKey];
     
     if (NEW_API_AVAILABLE) {
         retVal = containerSubdirectory;
@@ -822,9 +807,7 @@ typedef enum : NSUInteger {
 {
     NSURL *url = [self libraryDirectoryURL];
     
-    NSString *librarySubdirectory = kDefaultLibrarySubdirectoryName;
-    if ([_options[DKCloudCoreDataControllerLibrarySubdirectoryKey] length] > 0)
-        librarySubdirectory = _options[DKCloudCoreDataControllerLibrarySubdirectoryKey];
+    NSString *librarySubdirectory = _options[DKCloudCoreDataControllerLibrarySubdirectoryKey];
     
     url = [url URLByAppendingPathComponent:librarySubdirectory isDirectory:YES];
     
@@ -845,7 +828,7 @@ typedef enum : NSUInteger {
 {
     if (!_ubiquityContainerURL) {
         NSFileManager *fileManager = [[NSFileManager alloc] init];
-        _ubiquityContainerURL = [fileManager URLForUbiquityContainerIdentifier:self.ubiquityContainerIdentifier];
+        _ubiquityContainerURL = [fileManager URLForUbiquityContainerIdentifier:_options[DKCloudCoreDataControllerUbiquityContainerIdentifierKey]];
     }
     return _ubiquityContainerURL;
 }
