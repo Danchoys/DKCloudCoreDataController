@@ -33,9 +33,6 @@ NSString *const DKCloudCoreDataControllerStoreWillChangeNotification = @"_DKClou
 NSString *const DKCloudCoreDataControllerStoreDidChangeNotification = @"_DKCloudCoreDataControllerStoreDidChangeNotification";
 NSString *const DKCloudCoreDataControllerDidImportChangesNotification = @"_DKCloudCoreDataControllerDidImportChangesNotification";
 
-// User defaults keys
-static NSString *const kUbiquityTokenKey = @"DKCloudCoreDataController_ubiquityTokenKey";
-
 // String constants
 static NSString *const kDefaultUbiquityContainerSubdirectoryName = @"PersistentStoreLogs";
 static NSString *const kDefaultLibrarySubdirectoryName = @"PersistentStores";
@@ -54,7 +51,6 @@ typedef enum : NSUInteger {
 } DKCloudCoreDataControllerUbiquitousStoreType;
 
 @interface DKCloudCoreDataController () {
-    id _ubiquityToken;
     id _currentUbiquityToken;
     
     NSString *_ubiquitousContentName;
@@ -64,8 +60,6 @@ typedef enum : NSUInteger {
     NSManagedObjectModel *_managedObjectModel;
     NSPersistentStoreCoordinator *_mainPersistentStoreCoordinator;
 }
-
-@property (nonatomic) id ubiquityToken;
 
 @property (nonatomic, readonly, getter = isICloudAvailable) BOOL iCloudAvailable;
 
@@ -156,27 +150,6 @@ typedef enum : NSUInteger {
 
 #pragma mark -
 #pragma mark - Properties
-
-- (id)ubiquityToken
-{
-    if (!_ubiquityToken) {
-        NSData *ubiquityTokenData = [[NSUserDefaults standardUserDefaults] objectForKey:kUbiquityTokenKey];
-        if (ubiquityTokenData)
-            _ubiquityToken = [NSKeyedUnarchiver unarchiveObjectWithData:ubiquityTokenData];
-    }
-    return _ubiquityToken;
-}
-
-- (void)setUbiquityToken:(id)ubiquityToken
-{
-    _ubiquityToken = ubiquityToken;
-    if (ubiquityToken) {
-        NSData *ubiquityTokenData = [NSKeyedArchiver archivedDataWithRootObject:ubiquityToken];
-        [[NSUserDefaults standardUserDefaults] setObject:ubiquityTokenData forKey:kUbiquityTokenKey];
-    } else
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUbiquityTokenKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 - (BOOL)isICloudAvailable
 {
@@ -346,7 +319,6 @@ typedef enum : NSUInteger {
 
 - (void)ubiquitousStoreDidLoad
 {
-    self.ubiquityToken = _currentUbiquityToken;
     DKLog(@"Did load ubiquitous store");
 }
 
@@ -664,6 +636,7 @@ typedef enum : NSUInteger {
 - (void)ubiquityIdentityDidChange:(NSNotification *)notification
 {
     // Get the new ubiquity identity token
+    id oldUbiquityToken = _currentUbiquityToken;
     _currentUbiquityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
     
     // If new API is available then the system will handle
@@ -671,7 +644,7 @@ typedef enum : NSUInteger {
     // when we transition between iCloud and NoAccount stores
     // since we provide our own store for the case of iCloud
     // being not available.
-    if (NEEDS_ASYNCHRONOUS_SETUP || ((!self.ubiquityToken || !_currentUbiquityToken) && self.ubiquityToken != _currentUbiquityToken)) {
+    if (NEEDS_ASYNCHRONOUS_SETUP || ((!oldUbiquityToken|| !_currentUbiquityToken) && oldUbiquityToken != _currentUbiquityToken)) {
         // We need to unload the current ubiquitous store first
         [self unloadUbiquitousStore];
         
