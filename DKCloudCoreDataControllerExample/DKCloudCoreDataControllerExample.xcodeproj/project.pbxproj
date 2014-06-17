@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC16D714194BC50C00D77CE9 /* libDKCloudCoreDataController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC16D711194BC4DC00D77CE9 /* libDKCloudCoreDataController.a */; };
+		CC16D716194BC59200D77CE9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC16D715194BC59200D77CE9 /* CoreData.framework */; };
+		CC16D719194BC68D00D77CE9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC16D717194BC68D00D77CE9 /* Model.xcdatamodeld */; };
+		CC16D71C194BC74D00D77CE9 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = CC16D71B194BC74D00D77CE9 /* Contact.m */; };
+		CC16D71F194BD20200D77CE9 /* CDEContactAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC16D71E194BD20200D77CE9 /* CDEContactAdditionViewController.m */; };
+		CCADABFA194BC44D00ECE5FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADABF9194BC44D00ECE5FC /* Foundation.framework */; };
+		CCADABFC194BC44D00ECE5FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADABFB194BC44D00ECE5FC /* CoreGraphics.framework */; };
+		CCADABFE194BC44D00ECE5FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCADABFD194BC44D00ECE5FC /* UIKit.framework */; };
+		CCADAC04194BC44D00ECE5FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCADAC02194BC44D00ECE5FC /* InfoPlist.strings */; };
+		CCADAC06194BC44D00ECE5FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADAC05194BC44D00ECE5FC /* main.m */; };
+		CCADAC0A194BC44D00ECE5FC /* CDEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADAC09194BC44D00ECE5FC /* CDEAppDelegate.m */; };
+		CCADAC0D194BC44D00ECE5FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCADAC0B194BC44D00ECE5FC /* Main.storyboard */; };
+		CCADAC10194BC44D00ECE5FC /* CDEMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCADAC0F194BC44D00ECE5FC /* CDEMasterViewController.m */; };
+		CCADAC15194BC44D00ECE5FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCADAC14194BC44D00ECE5FC /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC16D710194BC4DC00D77CE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC16D70C194BC4DC00D77CE9 /* DKCloudCoreDataController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC3206E018E00DD6002DA211;
+			remoteInfo = DKCloudCoreDataController;
+		};
+		CC16D712194BC50700D77CE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC16D70C194BC4DC00D77CE9 /* DKCloudCoreDataController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CC3206DF18E00DD6002DA211;
+			remoteInfo = DKCloudCoreDataController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CC16D70C194BC4DC00D77CE9 /* DKCloudCoreDataController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DKCloudCoreDataController.xcodeproj; path = ../DKCloudCoreDataController.xcodeproj; sourceTree = "<group>"; };
+		CC16D715194BC59200D77CE9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CC16D718194BC68D00D77CE9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CC16D71A194BC74D00D77CE9 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		CC16D71B194BC74D00D77CE9 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		CC16D71D194BD20200D77CE9 /* CDEContactAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEContactAdditionViewController.h; sourceTree = "<group>"; };
+		CC16D71E194BD20200D77CE9 /* CDEContactAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEContactAdditionViewController.m; sourceTree = "<group>"; };
+		CCADABF6194BC44D00ECE5FC /* DKCloudCoreDataControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DKCloudCoreDataControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCADABF9194BC44D00ECE5FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCADABFB194BC44D00ECE5FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CCADABFD194BC44D00ECE5FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CCADAC01194BC44D00ECE5FC /* DKCloudCoreDataControllerExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DKCloudCoreDataControllerExample-Info.plist"; sourceTree = "<group>"; };
+		CCADAC03194BC44D00ECE5FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCADAC05194BC44D00ECE5FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CCADAC07194BC44D00ECE5FC /* DKCloudCoreDataControllerExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DKCloudCoreDataControllerExample-Prefix.pch"; sourceTree = "<group>"; };
+		CCADAC08194BC44D00ECE5FC /* CDEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDEAppDelegate.h; sourceTree = "<group>"; };
+		CCADAC09194BC44D00ECE5FC /* CDEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDEAppDelegate.m; sourceTree = "<group>"; };
+		CCADAC0C194BC44D00ECE5FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CCADAC0E194BC44D00ECE5FC /* CDEMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDEMasterViewController.h; sourceTree = "<group>"; };
+		CCADAC0F194BC44D00ECE5FC /* CDEMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDEMasterViewController.m; sourceTree = "<group>"; };
+		CCADAC14194BC44D00ECE5FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CCADAC1B194BC44D00ECE5FC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CCADAC32194BC4B000ECE5FC /* DKCloudCoreDataControllerExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DKCloudCoreDataControllerExample.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCADABF3194BC44D00ECE5FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC16D716194BC59200D77CE9 /* CoreData.framework in Frameworks */,
+				CC16D714194BC50C00D77CE9 /* libDKCloudCoreDataController.a in Frameworks */,
+				CCADABFC194BC44D00ECE5FC /* CoreGraphics.framework in Frameworks */,
+				CCADABFE194BC44D00ECE5FC /* UIKit.framework in Frameworks */,
+				CCADABFA194BC44D00ECE5FC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC16D70D194BC4DC00D77CE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC16D711194BC4DC00D77CE9 /* libDKCloudCoreDataController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCADABED194BC44D00ECE5FC = {
+			isa = PBXGroup;
+			children = (
+				CCADABFF194BC44D00ECE5FC /* DKCloudCoreDataControllerExample */,
+				CCADABF8194BC44D00ECE5FC /* Frameworks */,
+				CCADABF7194BC44D00ECE5FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCADABF7194BC44D00ECE5FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCADABF6194BC44D00ECE5FC /* DKCloudCoreDataControllerExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCADABF8194BC44D00ECE5FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC16D715194BC59200D77CE9 /* CoreData.framework */,
+				CC16D70C194BC4DC00D77CE9 /* DKCloudCoreDataController.xcodeproj */,
+				CCADABF9194BC44D00ECE5FC /* Foundation.framework */,
+				CCADABFB194BC44D00ECE5FC /* CoreGraphics.framework */,
+				CCADABFD194BC44D00ECE5FC /* UIKit.framework */,
+				CCADAC1B194BC44D00ECE5FC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCADABFF194BC44D00ECE5FC /* DKCloudCoreDataControllerExample */ = {
+			isa = PBXGroup;
+			children = (
+				CCADAC32194BC4B000ECE5FC /* DKCloudCoreDataControllerExample.entitlements */,
+				CCADAC08194BC44D00ECE5FC /* CDEAppDelegate.h */,
+				CCADAC09194BC44D00ECE5FC /* CDEAppDelegate.m */,
+				CCADAC0B194BC44D00ECE5FC /* Main.storyboard */,
+				CCADAC0E194BC44D00ECE5FC /* CDEMasterViewController.h */,
+				CCADAC0F194BC44D00ECE5FC /* CDEMasterViewController.m */,
+				CC16D71A194BC74D00D77CE9 /* Contact.h */,
+				CC16D71B194BC74D00D77CE9 /* Contact.m */,
+				CC16D71D194BD20200D77CE9 /* CDEContactAdditionViewController.h */,
+				CC16D71E194BD20200D77CE9 /* CDEContactAdditionViewController.m */,
+				CCADAC14194BC44D00ECE5FC /* Images.xcassets */,
+				CC16D717194BC68D00D77CE9 /* Model.xcdatamodeld */,
+				CCADAC00194BC44D00ECE5FC /* Supporting Files */,
+			);
+			path = DKCloudCoreDataControllerExample;
+			sourceTree = "<group>";
+		};
+		CCADAC00194BC44D00ECE5FC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCADAC01194BC44D00ECE5FC /* DKCloudCoreDataControllerExample-Info.plist */,
+				CCADAC02194BC44D00ECE5FC /* InfoPlist.strings */,
+				CCADAC05194BC44D00ECE5FC /* main.m */,
+				CCADAC07194BC44D00ECE5FC /* DKCloudCoreDataControllerExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCADABF5194BC44D00ECE5FC /* DKCloudCoreDataControllerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCADAC2B194BC44D00ECE5FC /* Build configuration list for PBXNativeTarget "DKCloudCoreDataControllerExample" */;
+			buildPhases = (
+				CCADABF2194BC44D00ECE5FC /* Sources */,
+				CCADABF3194BC44D00ECE5FC /* Frameworks */,
+				CCADABF4194BC44D00ECE5FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC16D713194BC50700D77CE9 /* PBXTargetDependency */,
+			);
+			name = DKCloudCoreDataControllerExample;
+			productName = DKCloudCoreDataControllerExample;
+			productReference = CCADABF6194BC44D00ECE5FC /* DKCloudCoreDataControllerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCADABEE194BC44D00ECE5FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CDE;
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					CCADABF5194BC44D00ECE5FC = {
+						DevelopmentTeam = HNZG8PLWWM;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = CCADABF1194BC44D00ECE5FC /* Build configuration list for PBXProject "DKCloudCoreDataControllerExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CCADABED194BC44D00ECE5FC;
+			productRefGroup = CCADABF7194BC44D00ECE5FC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CC16D70D194BC4DC00D77CE9 /* Products */;
+					ProjectRef = CC16D70C194BC4DC00D77CE9 /* DKCloudCoreDataController.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				CCADABF5194BC44D00ECE5FC /* DKCloudCoreDataControllerExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CC16D711194BC4DC00D77CE9 /* libDKCloudCoreDataController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDKCloudCoreDataController.a;
+			remoteRef = CC16D710194BC4DC00D77CE9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCADABF4194BC44D00ECE5FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADAC15194BC44D00ECE5FC /* Images.xcassets in Resources */,
+				CCADAC04194BC44D00ECE5FC /* InfoPlist.strings in Resources */,
+				CCADAC0D194BC44D00ECE5FC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCADABF2194BC44D00ECE5FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCADAC06194BC44D00ECE5FC /* main.m in Sources */,
+				CCADAC0A194BC44D00ECE5FC /* CDEAppDelegate.m in Sources */,
+				CC16D71F194BD20200D77CE9 /* CDEContactAdditionViewController.m in Sources */,
+				CC16D719194BC68D00D77CE9 /* Model.xcdatamodeld in Sources */,
+				CC16D71C194BC74D00D77CE9 /* Contact.m in Sources */,
+				CCADAC10194BC44D00ECE5FC /* CDEMasterViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC16D713194BC50700D77CE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DKCloudCoreDataController;
+			targetProxy = CC16D712194BC50700D77CE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCADAC02194BC44D00ECE5FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCADAC03194BC44D00ECE5FC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CCADAC0B194BC44D00ECE5FC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCADAC0C194BC44D00ECE5FC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CCADAC29194BC44D00ECE5FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CCADAC2A194BC44D00ECE5FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCADAC2C194BC44D00ECE5FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../,
+				);
+				INFOPLIST_FILE = "DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CCADAC2D194BC44D00ECE5FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../,
+				);
+				INFOPLIST_FILE = "DKCloudCoreDataControllerExample/DKCloudCoreDataControllerExample-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCADABF1194BC44D00ECE5FC /* Build configuration list for PBXProject "DKCloudCoreDataControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCADAC29194BC44D00ECE5FC /* Debug */,
+				CCADAC2A194BC44D00ECE5FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCADAC2B194BC44D00ECE5FC /* Build configuration list for PBXNativeTarget "DKCloudCoreDataControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCADAC2C194BC44D00ECE5FC /* Debug */,
+				CCADAC2D194BC44D00ECE5FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC16D717194BC68D00D77CE9 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC16D718194BC68D00D77CE9 /* Model.xcdatamodel */,
+			);
+			currentVersion = CC16D718194BC68D00D77CE9 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CCADABEE194BC44D00ECE5FC /* Project object */;
+}
