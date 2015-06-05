@@ -15,9 +15,9 @@
 static void DKLog(NSString *format, ...)
 {
     va_list argp;
-	va_start(argp, format);
+    va_start(argp, format);
     NSLogv([NSString stringWithFormat:@"DKCloudCoreDataController: %@", format], argp);
-	va_end(argp);
+    va_end(argp);
 }
 
 // Option keys
@@ -257,10 +257,12 @@ typedef enum : NSUInteger {
 - (void)loadFallbackStore
 {
     NSError *error;
+    NSDictionary *options = @{ NSInferMappingModelAutomaticallyOption : @YES,
+                               NSMigratePersistentStoresAutomaticallyOption : @YES };
     [_mainPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]
                                                             URL:[self fallbackStoreURL]
-                                                        options:nil
+                                                        options:options
                                                           error:&error];
     if (error)
         DKLog(@"Error: Could not load fallback store: %@", error);
@@ -278,10 +280,12 @@ typedef enum : NSUInteger {
 - (void)loadNoAccountStoreIntoPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)coordinator
 {
     NSError *error;
+    NSDictionary *options = @{ NSInferMappingModelAutomaticallyOption : @YES,
+                               NSMigratePersistentStoresAutomaticallyOption : @YES };
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType
                               configuration:_options[DKCloudCoreDataControllerUbiquitousStoreConfigurationKey]
                                         URL:[self noAccountStoreURL]
-                                    options:nil
+                                    options:options
                                       error:&error];
     if (error)
         DKLog(@"Error: Could not load no account store: %@", error);
@@ -296,7 +300,9 @@ typedef enum : NSUInteger {
     id ubiquitousContentURL = [self ubiquitousContentURL];
     
     NSMutableDictionary *options = [@{ NSPersistentStoreUbiquitousContentNameKey : _ubiquitousContentName,
-                                      NSPersistentStoreUbiquitousContentURLKey : ubiquitousContentURL} mutableCopy];
+                                       NSPersistentStoreUbiquitousContentURLKey : ubiquitousContentURL,
+                                       NSInferMappingModelAutomaticallyOption : @YES,
+                                       NSMigratePersistentStoresAutomaticallyOption : @YES } mutableCopy];
     
     // If the new API is available, we need to pass the ubiquity container identifier among the options
     // to addPersistentStoreWithType:configuration:URL:options:error:.
