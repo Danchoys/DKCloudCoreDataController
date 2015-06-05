@@ -175,10 +175,12 @@ typedef enum : NSUInteger {
 {
     if ([_options[DKCloudCoreDataControllerLocalStoreConfigurationKey] length] > 0) {
         NSError *error;
+        NSDictionary *options = @{ NSInferMappingModelAutomaticallyOption : @YES,
+                                   NSMigratePersistentStoresAutomaticallyOption : @YES };
         [_mainPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                       configuration:_options[DKCloudCoreDataControllerLocalStoreConfigurationKey]
                                                                 URL:[self localStoreURL]
-                                                            options:nil
+                                                            options:options
                                                               error:&error];
         if (error)
             DKLog(@"Error: Could not add local store: %@", error);
